@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}
+<!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+<ul class="list-unstyled">
+  <li><a href="/home"> <i class="fa fa-bar-chart"></i>Charts </a></li>
+  <li><a href="/tables"> <i class="icon-grid"></i>Tables </a></li>
+</ul>
+<!-- Sidebar Navidation Menus--><span class="heading">Extra</span>
+<ul class="list-unstyled">
+  <li class="active"><a href="/forms"> <i class="icon-padnote"></i>Predict </a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<!-- Medical Prediction Section-->
+<section class="dashboard-counts no-padding-bottom">
+<div class="container-fluid">
+  <div class="row">
+    <!-- Result Display-->
+    <div class="row col-lg-6 bg-white has-shadow">
+      <!-- Item -->
+      <div class="col-xl-6 col-sm-6">
+        <div class="item d-flex align-items-center">
+          <div class="icon bg-green"><i class="icon-bill"></i></div>
+            <div class="title"><span><strong>预测<br>结果</strong></span>
+            <div class="progress">
+              <div role="progressbar" style="width: {{ predict.result_ }}%" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-green"></div>
+            </div>
+          </div>
+          <div class="number"><strong>{{ predict.result }}</strong></div>
+        </div>
+      </div>
+      <!-- Item -->
+      <div class="col-xl-6 col-sm-6">
+        <div class="item d-flex align-items-center">
+          <div class="icon bg-red"><i class="icon-padnote"></i></div>
+            <div class="title"><span><strong>正确<br>概率</strong></span>
+            <div class="progress">
+              <div role="progressbar" style="width: {{ predict.conf }}%" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
+            </div>
+          </div>
+          <div class="number"><strong>{{ predict.conf }}</strong></div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Form-->
+    <div class="col-lg-6">
+      <div class="card" style="height: 100%" >
+        <div class="card-close">
+          <div class="dropdown">
+            <button type="button" id="closeCard4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+            <div aria-labelledby="closeCard4" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a></div>
+          </div>
+        </div>
+        <div class="card-header d-flex align-items-center">
+          <h3 class="h4">疾病预测</h3>
+        </div>
+        <div class="card-body" style="--layout-horizontal: center" >
+          <div class="form-group-row">
+            <label class="col-sm-6">Please input related Medical Data : </label>
+            <button type="button" data-toggle="modal" data-target="#myModal" class="col-sm-4 btn btn-primary">Medical Predict </button>
+          </div>
+          <!-- Modal-->
+          <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+            <div role="document" class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 id="exampleModalLabel" class="modal-title">Predict Modal</h4>
+                  <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                  <p><strong>Medical Prediction  </strong>  Please fill the form & click submit.</p>
+                  <form method="post" action="{% url 'predict' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group-material">
+                      <input type="text" name="收缩压" required class="input-material">
+                        <label class="label-material"><strong>收缩压 </strong></label>
+                    </div>
+                    <div class="form-group-material">
+                      <input type="text" name="舒张压" required class="input-material">
+                        <label class="label-material"><strong>舒张压 </strong></label>
+                    </div>
+                    <div class="form-group-material">
+                      <input type="text" name="尿蛋白" required class="input-material">
+                        <label class="label-material"><strong>尿蛋白 </strong></label>
+                    </div>
+                    <div class="form-group-material">
+                      <input type="text" name="水肿" required class="input-material">
+                        <label class="label-material"><strong>水肿 </strong></label>
+                    </div>
+                    <div class="form-group-material">
+                      <input type="text" name="体重" required class="input-material">
+                        <label class="label-material"><strong>体重 </strong></label>
+                    </div>
+                    <div class="form-group-material">
+                      <input type="text" name="腹围" required class="input-material">
+                        <label class="label-material"><strong>腹围 </strong></label>
+                    </div>
+                    <div class="form-group-material">
+                      <input type="text" name="头盆关系" required class="input-material">
+                        <label class="label-material"><strong>头盆关系 </strong></label>
+                    </div>
+                    <div class="form-group-material">
+                      <input type="text" name="红细胞" required class="input-material">
+                        <label class="label-material"><strong>红细胞 </strong></label>
+                    </div>
+                    <div class="form-group-material">
+                      <input type="text" name="单核细胞百分比" required class="input-material">
+                        <label class="label-material"><strong>单核细胞百分比 </strong></label>
+                    </div>
+                    <div class="form-group-material">
+                      <input type="text" name="大小血板比率" required class="input-material">
+                        <label class="label-material"><strong>大小血板比率 </strong></label>
+                    </div>
+                    <div class="form-group-material">
+                      <input type="text" name="平均RBC血红蛋白量" required class="input-material">
+                        <label class="label-material"><strong>平均RBC血红蛋白量 </strong></label>
+                    </div>
+                    <div class="form-group-material">
+                      <input type="text" name="平均RBC体积" required class="input-material">
+                        <label class="label-material"><strong>平均RBC体积 </strong></label>
+                    </div>
+                    <div class="form-group-material">
+                      <input type="text" name="嗜碱细胞绝对值" required class="input-material">
+                        <label class="label-material"><strong>嗜碱细胞绝对值 </strong></label>
+                    </div>
+                    <div class="form-group-material">
+                      <input type="text" name="淋巴细胞绝对值" required class="input-material">
+                        <label class="label-material"><strong>淋巴细胞绝对值 </strong></label>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="提交">
+                  </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+{% endblock %}

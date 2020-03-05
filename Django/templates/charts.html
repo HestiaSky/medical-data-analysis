@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}
+<!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+<ul class="list-unstyled">
+  <li class="active"><a href="/home"> <i class="fa fa-bar-chart"></i>Charts </a></li>
+  <li><a href="/tables"> <i class="icon-grid"></i>Tables </a></li>
+</ul>
+<!-- Sidebar Navidation Menus--><span class="heading">Extra</span>
+<ul class="list-unstyled">
+  <li><a href="/forms"> <i class="icon-padnote"></i>Predict </a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<!-- Dashboard Counts Section-->
+<section class="dashboard-counts no-padding-bottom">
+<div class="container-fluid">
+  <div class="row bg-white has-shadow" style="margin:0 5% 30px 5%;">
+    <!-- Item -->
+    <div class="col-xl-3 col-sm-6">
+      <div class="item d-flex align-items-center">
+        <div class="icon bg-violet"><i class="icon-user"></i></div>
+          <div class="title"><span><strong>样本<br>总数</strong></span>
+          <div class="progress">
+            <div role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet"></div>
+          </div>
+        </div>
+        <div class="number"><strong>74358</strong></div>
+      </div>
+    </div>
+    <!-- Item -->
+    <div class="col-xl-3 col-sm-6">
+      <div class="item d-flex align-items-center">
+        <div class="icon bg-red"><i class="icon-user"></i></div>
+          <div class="title"><span><strong>病例<br>数量</strong></span>
+          <div class="progress">
+            <div role="progressbar" style="width: 6%" aria-valuenow="6" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
+          </div>
+        </div>
+        <div class="number"><strong>4936</strong></div>
+      </div>
+    </div>
+    <!-- Item -->
+    <div class="col-xl-3 col-sm-6">
+      <div class="item d-flex align-items-center">
+        <div class="icon bg-green"><i class="icon-padnote"></i></div>
+          <div class="title"><span><strong>指标<br>总数</strong></span>
+          <div class="progress">
+            <div role="progressbar" style="width: 100%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="45" class="progress-bar bg-green"></div>
+          </div>
+        </div>
+        <div class="number"><strong>42</strong></div>
+      </div>
+    </div>
+    <!-- Item -->
+    <div class="col-xl-3 col-sm-6">
+      <div class="item d-flex align-items-center">
+        <div class="icon bg-orange"><i class="icon-padnote"></i></div>
+          <div class="title"><span><strong>有效<br>指标</strong></span>
+          <div class="progress">
+            <div role="progressbar" style="width: 33%" aria-valuenow="14" aria-valuemin="0" aria-valuemax="45" class="progress-bar bg-orange"></div>
+          </div>
+        </div>
+        <div class="number"><strong>14</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Charts Section-->
+<section class="charts">
+<div class="container-fluid">
+  <div class="row">
+    <!-- Line Charts-->
+    <div class="col-lg-12" style="padding:30px 5% 30px 5%;">
+      <div class="line-chart-example card">
+        <div class="card-close">
+          <div class="dropdown">
+            <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+            <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow">
+              <a href="#" class="dropdown-item remove"><i class="fa fa-times"></i>Close</a><a href="javascript:" class="dropdown-item" onclick="lc0_data()"><i class="fa"></i>体重</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc1_data()"><i class="fa"></i>头盆关系</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc2_data()"><i class="fa"></i>宫高</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc3_data()"><i class="fa"></i>尿蛋白</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc4_data()"><i class="fa"></i>收缩压</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc5_data()"><i class="fa"></i>水肿</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc6_data()"><i class="fa"></i>胎位</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc7_data()"><i class="fa"></i>腹围</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc9_data()"><i class="fa"></i>肌酐</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc10_data()"><i class="fa"></i>尿酸</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc11_data()"><i class="fa"></i>钙</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc12_data()"><i class="fa"></i>球蛋白</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc13_data()"><i class="fa"></i>白蛋白:球蛋白</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc14_data()"><i class="fa"></i>总胆红素</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc15_data()"><i class="fa"></i>丙氨酸氨基转移酶</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc16_data()"><i class="fa"></i>铁</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc17_data()"><i class="fa"></i>直接胆红素</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc18_data()"><i class="fa"></i>总胆汁酸</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc19_data()"><i class="fa"></i>磷</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc20_data()"><i class="fa"></i>天冬氨酸氨基转移酶</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc21_data()"><i class="fa"></i>总蛋白</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc22_data()"><i class="fa"></i>红细胞压积</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc23_data()"><i class="fa"></i>嗜碱细胞绝对值</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc24_data()"><i class="fa"></i>血小板平均体积</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc25_data()"><i class="fa"></i>淋巴细胞绝对值</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc26_data()"><i class="fa"></i>血小板分布宽度</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc27_data()"><i class="fa"></i>平均RBC血红蛋白浓度</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc28_data()"><i class="fa"></i>淋巴细胞百分比</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc29_data()"><i class="fa"></i>嗜酸细胞绝对值</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc30_data()"><i class="fa"></i>血小板计数</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc31_data()"><i class="fa"></i>红细胞分布宽度</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc32_data()"><i class="fa"></i>单核细胞百分比</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc33_data()"><i class="fa"></i>红细胞</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc34_data()"><i class="fa"></i>嗜酸细胞百分比</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc35_data()"><i class="fa"></i>单核细胞绝对值</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc36_data()"><i class="fa"></i>平均RBC血红蛋白量</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc37_data()"><i class="fa"></i>白细胞</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc38_data()"><i class="fa"></i>嗜碱细胞百分比</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc39_data()"><i class="fa"></i>平均RBC体积</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc40_data()"><i class="fa"></i>红细胞分布宽度(SD)</a>
+              <a href="javascript:" class="dropdown-item" onclick="lc41_data()"><i class="fa"></i>大小血板比率</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-header d-flex align-items-center">
+          <h3 class="h4" id="myTitle">医疗指标分布图 </h3>
+        </div>
+        <div class="card-body" id="lineChartDiv">
+          <canvas id="lineChartExample"></canvas>
+        </div>
+      </div>
+    </div>
+    <!-- Bar Charts-->
+    <div class="col-lg-12" style="padding:30px 5% 0px 5%;">
+      <div class="bar-chart-example card">
+        <div class="card-close">
+          <div class="dropdown">
+            <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+            <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a></div>
+          </div>
+        </div>
+        <div class="card-header d-flex align-items-center">
+          <h3 class="h4">医疗指标均值对比图</h3>
+        </div>
+        <div class="card-body">
+          <canvas id="barChartExample"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+{% endblock %}
