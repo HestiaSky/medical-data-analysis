@@ -1,7 +1,8 @@
 import torch
 from torch import nn
 import torch.nn.functional as F
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+import numpy as np
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_curve, auc
 
 
 def acc_f1(output, labels, average='binary'):
@@ -9,13 +10,17 @@ def acc_f1(output, labels, average='binary'):
     if output.is_cuda:
         output = output.detach().cpu()
         labels = labels.detach().cpu()
+    yhatmic = np.array(output.detach()).ravel()
+    ymic = np.array(labels.long()).ravel()
+    fpr, tpr, _ = roc_curve(ymic, yhatmic)
+    roc_auc = auc(fpr, tpr)
     output = (output > 0.5).long()
     labels = labels.long()
     accuracy = accuracy_score(labels, output)
     precision = precision_score(labels, output, average=average)
     recall = recall_score(labels, output, average=average)
     f1 = f1_score(labels, output, average=average)
-    return accuracy, precision, recall, f1
+    return accuracy, precision, recall, f1, roc_auc
 
 
 class BaseModel(nn.Module):
@@ -58,15 +63,15 @@ class BaseModel(nn.Module):
         idx = data[f'idx_{split}']
         outputs = outputs[idx]
         labels = data['y'][idx]
-        acc, pre, rec, f1 = acc_f1(outputs, labels)
-        metrics = {'acc': acc, 'pre': pre, 'rec': rec, 'f1': f1}
+        acc, pre, rec, f1, auc = acc_f1(outputs, labels)
+        metrics = {'acc': acc, 'pre': pre, 'rec': rec, 'f1': f1, 'auc': auc}
         return metrics
 
     def has_improved(self, m1, m2):
-        return m1['acc'] < m2['acc']
+        return m1['auc'] < m2['auc']
 
     def init_metric_dict(self):
-        return {'acc': -1, 'pre': -1, 'rec': -1, 'f1': -1}
+        return {'acc': -1, 'pre': -1, 'rec': -1, 'f1': -1, 'auc': -1}
 
 
 class LogisticRegression(BaseModel):

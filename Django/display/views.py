@@ -10,14 +10,23 @@ def login(request):
 
 
 def tables(request):
-    js = json.load(open('static/data/data.json', 'r', encoding='utf-8'))
-    describe = js['describeTable']
-    link = js['linkTable']
+    try:
+        js = json.load(open('static/data/data.json', 'r', encoding='utf-8'))
+        describe = js['describeTable']
+        link = js['linkTable']
+    except:
+        describe = {}
+        link = {}
     return render(request, 'tables.html', {'describe': describe, 'link': link})
 
 
 def charts(request):
-    return render(request, 'charts.html')
+    try:
+        js = json.load(open('static/data/data.json', 'r', encoding='utf-8'))
+        number = {'total': 74358, 'ill': 4936, 'feats': 42, 'useful': 14}
+    except:
+        number = {'total': 0, 'ill': 0, 'feats': 0, 'useful': 0}
+    return render(request, 'charts.html', {'number': number})
 
 
 def forms(request, predict=None):

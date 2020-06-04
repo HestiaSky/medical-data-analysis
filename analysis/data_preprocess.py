@@ -3,7 +3,7 @@ import numpy as np
 
 
 # Filter NaN
-'''
+
 df = pd.read_csv('../data/data.csv')
 print(df.head)
 
@@ -37,12 +37,11 @@ df = df[e]
 
 df = df.sort_values(by=['case_ID', 'week'], ascending=[True, True]).reset_index()
 print(df.head)
-df.to_csv('../data/data_filtered.csv')
-'''
+# df.to_csv('../data/data_filtered.csv')
 
 
 # Regularization
-'''
+
 df = pd.read_csv('../data/data_filtered.csv')
 print(df.head)
 from sklearn.preprocessing import scale, MinMaxScaler
@@ -54,19 +53,19 @@ for c in columns[11:-1]:
     df[c] = MinMaxScaler().fit_transform(df[[c]])
 print(df.head)
 
-df.to_csv('../data/data_regualr.csv', index=False)'''
+# df.to_csv('../data/data_regualr.csv', index=False)
 
 
 # Fill NaN with 0.0 or mean
-'''
+
 df = pd.read_csv('../data/data_filtered.csv')
 for c in df.columns.tolist()[2: 11]:
     df[c].replace(np.nan, df[c].mean(), inplace=True)
 for c in df.columns.tolist()[11:]:
     df[c].replace(np.nan, 0.0, inplace=True)
 print(df.describe)
-df.to_csv('../data/data_filtered.csv', index=False)
-'''
+# df.to_csv('../data/data_filtered.csv', index=False)
+
 
 
 # Delete unnormal data
@@ -79,29 +78,27 @@ df.to_csv('../data/data_filtered.csv', index=False)
 6. 水肿: 正常值范围0-9
 7. 胎位: 正常值范围32-52
 8. 腹围: 正常值范围60-160
+'''
 
 df = pd.read_csv('../data/data_filtered.csv')
 print(df.head)
-'''
 
-'''
+
 l = df['妊娠图头盆关系_pv2'].tolist()
 l = [i for i in l if i >= 18]
 l = sum(l)/len(l)
 df['妊娠图头盆关系_pv2'][df['妊娠图头盆关系_pv2'] < 18] = l
-df.to_csv('../data/data_filtered.csv', index=False)
-'''
+# df.to_csv('../data/data_filtered.csv', index=False)
 
-'''
+
 l = df['妊娠图宫高_pv1'].tolist()
 l = [i for i in l if 12 <= i <= 50]
 l = sum(l)/len(l)
 df['妊娠图宫高_pv1'][df['妊娠图宫高_pv1'] < 12] = l
 df['妊娠图宫高_pv1'][df['妊娠图宫高_pv1'] > 50] = l
-df.to_csv('../data/data_filtered.csv', index=False)
-'''
+# df.to_csv('../data/data_filtered.csv', index=False)
 
-'''
+
 l = df['妊娠图收缩压_pv1'].tolist()
 l = [i for i in l if 90 <= i <= 140]
 l = sum(l)/len(l)
@@ -113,30 +110,30 @@ l = [i for i in l if 60 <= i <= 90]
 l = sum(l)/len(l)
 df['妊娠图舒张压_pv1'][df['妊娠图舒张压_pv1'] < 30] = l
 df['妊娠图舒张压_pv1'][df['妊娠图舒张压_pv1'] > 120] = l
-df.to_csv('data/data_filtered.csv', index=False)
+# df.to_csv('data/data_filtered.csv', index=False)
 
 s = df[df['妊娠图收缩压_pv1'] < df['妊娠图舒张压_pv1']].index.tolist()
 for i in s:
     df.loc[i, '妊娠图收缩压_pv1'], df.loc[i, '妊娠图舒张压_pv1'] \
         = df.loc[i, '妊娠图舒张压_pv1'], df.loc[i, '妊娠图收缩压_pv1']
-df.to_csv('../data/data_filtered.csv', index=False)
-'''
+# df.to_csv('../data/data_filtered.csv', index=False)
 
-'''
+
 l = df['妊娠图胎位_pv2'].tolist()
 l = [i for i in l if 32 <= i <= 52]
 l = sum(l)/len(l)
 df['妊娠图胎位_pv2'][df['妊娠图胎位_pv2'] < 32] = l
 df['妊娠图胎位_pv2'][df['妊娠图胎位_pv2'] > 52] = l
-df.to_csv('../data/data_filtered.csv', index=False)
-'''
+# df.to_csv('../data/data_filtered.csv', index=False)
 
-'''
+
 l = df['妊娠图腹围_pv1'].tolist()
 l = [i for i in l if 60 <= i <= 160]
 l = sum(l)/len(l)
 df['妊娠图腹围_pv1'][df['妊娠图腹围_pv1'] < 60] = l
 df['妊娠图腹围_pv1'][df['妊娠图腹围_pv1'] > 160] = l
-df.to_csv('../data/data_filtered.csv', index=False)
-'''
+
+print(df.head)
+# df.to_csv('../data/data_filtered.csv', index=False)
+
 

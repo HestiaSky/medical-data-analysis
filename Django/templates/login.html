@@ -46,7 +46,7 @@
             <div class="col-lg-6 bg-white">
               <div class="form d-flex align-items-center">
                 <div class="content">
-                  <form method="post" class="form-validate">
+                  <form method="post" class="form-validate" id="login-form">
                     <div class="form-group">
                       <input id="login-username" type="text" name="loginUsername" required data-msg="Please enter your username" class="input-material">
                       <label for="login-username" class="label-material">User Name</label>
@@ -54,7 +54,8 @@
                     <div class="form-group">
                       <input id="login-password" type="password" name="loginPassword" required data-msg="Please enter your password" class="input-material">
                       <label for="login-password" class="label-material">Password</label>
-                    </div><a id="login" href="/home" class="btn btn-primary">Login</a>
+                    </div>
+                      <a id="login" href="javascript:login()" class="btn btn-primary"å>Login</a>
                 </div>
               </div>
             </div>
@@ -76,5 +77,24 @@
     <script src="/static/vendor/jquery-validation/jquery.validate.min.js"></script>
     <!-- Main File-->
     <script src="/static/js/front.js"></script>
+    <script>
+        function login(){
+            var userName=document.getElementById("login-username");
+            var passWord= document.getElementById("login-password");
+            if(userName.value.trim()==""){
+                alert("用户名不能为空");
+            }
+            else if(passWord.value.trim()==""){
+                alert("密码不能为空");
+            }
+            else if(userName.value.trim()=="gwx" && passWord.value.trim()=="123456"){
+                window.location.href="/home";
+            }
+            else{
+                alert("用户名或密码错误");
+                window.location.reload();
+            }
+        }
+    </script>
   </body>
 </html>

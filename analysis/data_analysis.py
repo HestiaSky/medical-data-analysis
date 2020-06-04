@@ -29,7 +29,7 @@ df.to_csv('../data/data_derived.csv', index=False)
 '''
 
 # Binary threshold
-'''
+
 df = pd.read_csv('../data/data_derived.csv')
 print(df.head)
 print(df.describe().index)
@@ -52,5 +52,4 @@ binary_df = pd.DataFrame({'case_ID': df['case_ID'].tolist(), 'label': df['label'
 for k, v in binary.items():
     binary_df[k] = v
 print(binary_df.head)
-binary_df.to_csv('../data/data_binary.csv', index=False)
-'''
+# binary_df.to_csv('../data/data_binary.csv', index=False)

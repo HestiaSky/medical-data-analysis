@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+import operator
 
 
 '''
@@ -40,7 +41,7 @@ import json
 }
 '''
 
-'''
+
 js = {'lineChart': [], 'barChart': {}, 'describeTable': [], 'linkTable': []}
 
 df = pd.read_csv('../data/data_filtered.csv')
@@ -150,8 +151,11 @@ linkTable.sort(key=operator.itemgetter('rate'), reverse=True)
 for i in range(len(linkTable)):
     linkTable[i].update({'index': i + 1})
 js['linkTable'] = linkTable
-json.dump(js, open('../Django/static/data/data.json', 'w', encoding='utf-8'))
-'''
+for k, v in js.items():
+    print(k)
+    print(v)
+# json.dump(js, open('../Django/static/data/data.json', 'w', encoding='utf-8'))
+
 
 
 

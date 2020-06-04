@@ -4,7 +4,7 @@ import pickle
 
 
 # Apriori
-'''
+
 binary_df = pd.read_csv('../data/data_binary.csv')
 columns = binary_df.columns.tolist()[2:]
 df1 = binary_df[binary_df['label'] == 0]
@@ -127,7 +127,7 @@ def rulesFromConseq(freqSet, H, supportData, brl, minConf=0.7):
 
 
 L, suppData = apriori(dataSet, minSupport=0.0)
-rules = generateRules(L, suppData, minConf=0.0)'''
+rules = generateRules(L, suppData, minConf=0.0)
 
 
 # 收缩压和舒张压就是症状，因此关联度极高，但不具有前瞻性
